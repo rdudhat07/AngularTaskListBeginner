@@ -1,0 +1,24 @@
+<div class="todos">
+    <form (submit)="addTodo()">
+        <input 
+            type="text"
+            name = "inputTodo"
+            placeholder="Enter new task.."
+            class="todo-input"
+            [(ngModel)] = "inputTodo"
+            style="font-family:monospace"
+        />
+        <input type="submit" value="Add Task" class="todo-submit"/>
+    </form>
+
+    <label *ngIf="getTodos() == undefined || getTodos().length == 0">
+        Todo List Is Empty....
+    </label>
+
+    <div *ngFor="let todo of getTodos(); let i = index;" class="todo {{ (todo.completed ? 'done': '') }}" >
+        <div class="id">{{ i + 1 }}</div>
+        <div class="content" (click)="toggleDone(i)">{{todo.content}}</div>
+        <button class="delete" (click)="deleteTodo(i)">Remove</button>
+    </div>
+
+</div>
